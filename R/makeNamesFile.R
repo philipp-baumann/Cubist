@@ -96,9 +96,6 @@ makeNamesFile <-
     out
   }
 
-escapes <- function(x, chars = c(":", ";", "|")) {
-  for (i in chars)
-    x <- gsub(i, paste("\\", i, sep = ""), x, fixed = TRUE)
-  gsub("([^[:alnum:]^[:space:]])", "\\\\\\1", x, useBytes = TRUE)  
+escapes <- function(x, pattern = "([,:|])") {
+  gsub(pattern,  "\\\\\\1", x, useBytes = TRUE)
 }
-
